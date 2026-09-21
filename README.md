@@ -1,4 +1,4 @@
-# Flores Para Ti 🌻
+# Flores Para Anahí 🌻
 
 Una página de girasoles para el **21 de septiembre**, pensada para verse en el celular.
 
@@ -13,6 +13,7 @@ Una página de girasoles para el **21 de septiembre**, pensada para verse en el 
 - **Al tocar la pantalla**: estallido de pétalos, vibración y una nota musical.
 - **Reproductor** con una melodía original generada por el navegador (Web Audio),
   y un botón ♪ para poner una canción guardada en el propio teléfono.
+- **Una carta** que se abre con el botón «ábreme ♥».
 - **Modo limpio** (botón ⛶ abajo a la derecha): esconde los controles para grabar la pantalla.
 
 ## Cómo usarla

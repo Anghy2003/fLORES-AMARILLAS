@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Flores Para Ti</title>
+<title>Flores Para Anahí</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;500;600&display=swap">
 <style>
@@ -199,8 +199,119 @@
   }
   body.clean .cleanBtn{opacity:.14;}
 
+  /* ---------- Botón y carta ---------- */
+  .bottom{
+    margin-top:auto;
+    display:flex;flex-direction:column;align-items:center;gap:11px;
+    pointer-events:none;
+  }
+
+  .openBtn{
+    pointer-events:auto;
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 20px;
+    border-radius:999px;
+    border:1px solid rgba(255,210,74,.38);
+    background:rgba(28,14,44,.55);
+    -webkit-backdrop-filter:blur(12px);
+    backdrop-filter:blur(12px);
+    box-shadow:0 6px 22px rgba(0,0,0,.35), 0 0 22px rgba(255,180,50,.16);
+    color:var(--ink);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size:12.5px;font-weight:500;
+    letter-spacing:.22em;text-transform:uppercase;
+    cursor:pointer;
+    transition:transform .16s ease, box-shadow .3s ease;
+  }
+  .openBtn:active{transform:scale(.95);}
+  .openBtn:focus-visible{outline:2px solid #FFF6DC;outline-offset:3px;}
+  .openBtn .hb{
+    color:#FF5C7A;font-size:13px;letter-spacing:0;
+    text-shadow:0 0 10px rgba(255,92,122,.8);
+    animation:beat 2.6s ease-in-out infinite;
+  }
+  @keyframes beat{
+    0%,100%{transform:scale(1);}
+    14%{transform:scale(1.22);}
+    28%{transform:scale(1);}
+    42%{transform:scale(1.14);}
+  }
+
+  .letter{
+    position:fixed;inset:0;z-index:5;
+    display:grid;place-items:center;
+    padding:26px 18px calc(env(safe-area-inset-bottom,0px) + 26px);
+    background:rgba(9,3,18,.74);
+    -webkit-backdrop-filter:blur(7px);
+    backdrop-filter:blur(7px);
+    animation:veil .45s ease both;
+  }
+  .letter[hidden]{display:none;}
+  @keyframes veil{from{opacity:0;}to{opacity:1;}}
+
+  .letterCard{
+    position:relative;
+    width:min(360px,100%);
+    max-height:100%;
+    overflow-y:auto;
+    padding:30px 26px 32px;
+    border-radius:24px;
+    border:1px solid rgba(255,210,74,.34);
+    background:linear-gradient(165deg,rgba(48,24,66,.95),rgba(26,12,40,.96));
+    box-shadow:0 22px 60px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.08);
+    animation:rise .55s cubic-bezier(.2,.8,.25,1) both;
+  }
+  @keyframes rise{
+    from{opacity:0;transform:translateY(26px) scale(.97);}
+    to{opacity:1;transform:none;}
+  }
+
+  .lt-eyebrow{
+    margin:0 0 10px;
+    font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;
+    color:rgba(255,246,220,.5);
+  }
+  .lt-title{
+    margin:0 0 20px;
+    font-family:'Great Vibes',cursive;
+    font-weight:400;
+    font-size:clamp(36px,11vw,46px);
+    line-height:1;
+    color:#FFF7E0;
+    text-shadow:0 0 12px rgba(255,200,70,.5), 0 0 30px rgba(255,140,30,.3);
+  }
+  .letterCard p.lt-body{
+    margin:0 0 14px;
+    font-size:15px;font-weight:300;line-height:1.68;
+    color:rgba(255,246,220,.88);
+  }
+  .lt-sign{
+    margin:22px 0 0;
+    font-family:'Great Vibes',cursive;
+    font-size:28px;line-height:1.15;
+    color:#FFD78A;
+    text-shadow:0 0 14px rgba(255,190,60,.4);
+  }
+  .lt-rule{
+    height:1px;margin:20px 0 0;
+    background:linear-gradient(90deg,transparent,rgba(255,210,74,.42),transparent);
+  }
+
+  .closeBtn{
+    position:absolute;top:12px;right:12px;
+    width:32px;height:32px;border-radius:50%;
+    border:1px solid rgba(255,246,220,.16);
+    background:rgba(255,246,220,.06);
+    color:rgba(255,246,220,.75);
+    font-size:19px;line-height:1;
+    display:grid;place-items:center;cursor:pointer;
+    transition:transform .14s ease;
+  }
+  .closeBtn:active{transform:scale(.9);}
+  .closeBtn:focus-visible{outline:2px solid #FFF6DC;outline-offset:2px;}
+
   .hint{
-    margin:auto 0 2px;
+    margin:0;
     font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
     color:rgba(255,246,220,.42);
     transition:opacity .8s ease;
@@ -215,7 +326,7 @@
 <canvas id="scene"></canvas>
 
 <div class="ui">
-  <h1 class="title">Flores<span class="small">Para Ti</span></h1>
+  <h1 class="title">Flores<span class="small">Para Anahí</span></h1>
   <p class="date">21 de septiembre</p>
 
   <div class="player">
@@ -236,7 +347,30 @@
     <input type="file" id="fileIn" accept="audio/*" hidden>
   </div>
 
-  <p class="hint" id="hint">toca los girasoles &nbsp;·&nbsp; ♪ pon tu canción</p>
+  <div class="bottom">
+    <button class="openBtn" id="openLetter">ábreme <span class="hb">&#9829;</span></button>
+    <p class="hint" id="hint">toca los girasoles &nbsp;·&nbsp; ♪ pon tu canción</p>
+  </div>
+</div>
+
+<!-- =======================================================================
+     EL MENSAJE PARA ANAHÍ
+     Para cambiarlo, edita solo el texto entre las etiquetas de aquí abajo.
+     ======================================================================= -->
+<div class="letter" id="letter" hidden>
+  <div class="letterCard" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+    <button class="closeBtn" id="closeLetter" aria-label="Cerrar el mensaje">&times;</button>
+
+    <p class="lt-eyebrow">21 de septiembre</p>
+    <h2 class="lt-title" id="letterTitle">Para Anahí</h2>
+
+    <p class="lt-body">Los girasoles hacen algo muy simple: buscan la luz y se giran hacia ella todos los días, sin cansarse nunca.</p>
+    <p class="lt-body">Yo hago lo mismo contigo.</p>
+    <p class="lt-body">Estas no se van a marchitar, como tampoco se marchita lo que siento cada vez que llegas a casa.</p>
+
+    <div class="lt-rule"></div>
+    <p class="lt-sign">Feliz primavera, mi amor.<br>Te amo.</p>
+  </div>
 </div>
 
 <button class="cleanBtn" id="cleanBtn" aria-label="Ocultar los controles para grabar la pantalla" aria-pressed="false">
@@ -1227,6 +1361,32 @@
     }
     requestAnimationFrame(tickUI);
   }
+
+  /* ============================================================
+     La carta
+     ============================================================ */
+  const letterEl = document.getElementById('letter');
+  const openLetter = document.getElementById('openLetter');
+  const closeLetter = document.getElementById('closeLetter');
+
+  function showLetter() {
+    letterEl.hidden = false;
+    closeLetter.focus();
+    if (navigator.vibrate) { try { navigator.vibrate([14, 70, 22]); } catch (e) {} }
+    if (W > 2 && H > 2) burst(W * 0.5, H * 0.42);
+    chime();
+  }
+  function hideLetter() {
+    letterEl.hidden = true;
+    openLetter.focus();
+  }
+
+  openLetter.addEventListener('click', showLetter);
+  closeLetter.addEventListener('click', hideLetter);
+  letterEl.addEventListener('click', e => { if (e.target === letterEl) hideLetter(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !letterEl.hidden) hideLetter();
+  });
 
   /* ============================================================
      Modo limpio: esconde los controles para grabar la pantalla
